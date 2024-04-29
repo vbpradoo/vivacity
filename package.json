@@ -1,0 +1,30 @@
+{
+  "name": "vivacity",
+  "version": "1.0.0",
+  "description": "This is a technical assignment for the company Vivacity-Tech for the Full Stack Developer position.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/vbpradoo/vivacity.git"
+  },
+  "keywords": [
+    "vivacity",
+    "full-stack",
+    "job",
+    "technical-exercise"
+  ],
+  "author": "Victor Boveda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vbpradoo/vivacity/issues"
+  },
+  "homepage": "https://github.com/vbpradoo/vivacity#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "jest": "^29.7.0",
+    "pg": "^8.11.5"
+  }
+}
