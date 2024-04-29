@@ -22,6 +22,14 @@ app.get('/', (request: Request, response: Response) => {
 
 // Required endpoint in the exercise definition
 app.get('/awesome/applicant', db.getApplicantInfo);
+app.get('/awesome/applicant/:id', db.getApplicantInfo);
+app.post('/awesome/applicant', db.addApplicantInfo);
+app.put('/awesome/applicant/:id', db.updateApplicantInfo);
+app.delete('/awesome/applicant/:id', db.deleteApplicantInfo);
+
+// Debug endpoint that retrieves all candidates
+app.get('/awesome/applicants', db.getAllApplicantInfo);
+
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);

@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS personal_info (
     email VARCHAR(255),
     linkedin VARCHAR(255),
     github VARCHAR(255),
-    application_data_id UUID REFERENCES application_data(id)
+    application_data_id UUID REFERENCES application_data(id) ON DELETE CASCADE
 );
 
 -- Create the ProfessionalExperience table
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS professional_experience (
     location VARCHAR(255),
     duration VARCHAR(50),
     bullet_points TEXT[],
-    application_data_id UUID REFERENCES application_data(id)
+    application_data_id UUID REFERENCES application_data(id) ON DELETE CASCADE
 );
 
 -- Create the Education table
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS education (
     completion_date VARCHAR(50),
     concentration VARCHAR(255),
     gpa NUMERIC,
-    application_data_id UUID REFERENCES application_data(id)
+    application_data_id UUID REFERENCES application_data(id) ON DELETE CASCADE
 );
 
 -- Create the Skills table
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS skills (
     ux_ui_design_software VARCHAR[],
     documentation_frameworks_and_libraries VARCHAR[],
     agile_methodologies VARCHAR[],
-    application_data_id UUID REFERENCES application_data(id)
+    application_data_id UUID REFERENCES application_data(id) ON DELETE CASCADE
 );
 
 -- Create the Projects table
@@ -72,12 +72,12 @@ CREATE TABLE IF NOT EXISTS projects (
     features TEXT[],
     impact TEXT,
     services TEXT[],
-    application_data_id UUID REFERENCES application_data(id)
+    application_data_id UUID REFERENCES application_data(id) ON DELETE CASCADE
 );
 
 -- Create the Certifications table
 CREATE TABLE IF NOT EXISTS certifications (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR(255),
-    application_data_id UUID REFERENCES application_data(id)
+    application_data_id UUID REFERENCES application_data(id) ON DELETE CASCADE
 );
