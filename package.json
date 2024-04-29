@@ -4,6 +4,8 @@
   "description": "This is a technical assignment for the company Vivacity-Tech for the Full Stack Developer position.",
   "main": "index.ts",
   "scripts": {
+    "dev": "nodemon index.ts",
+    "initAndPopulateDb": "init.db.sh",
     "test": "jest --watchAll"
   },
   "repository": {
@@ -23,8 +25,14 @@
   },
   "homepage": "https://github.com/vbpradoo/vivacity#readme",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
     "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/pg": "^8.11.5"
   }
 }
