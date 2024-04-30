@@ -60,7 +60,9 @@ export const getApplicantInfo = async (
       certifications: certificationsResult.rows,
     };
 
-    response.status(200).json(applicationData);
+    const applicationFilteredData = removeApplicationDataId(applicationData)
+
+    response.status(200).json(applicationFilteredData);
   } catch (error) {
     console.error("Error retrieving applicant info:", error);
     response.status(500).json({ error: "Failed to retrieve applicant info" });
@@ -122,7 +124,9 @@ export const getAllApplicantInfo = async (
         projects: projectsResult.rows,
         certifications: certificationsResult.rows,
       };
-      applicationAllData.push(applicationData);
+
+      const applicationFilteredData = removeApplicationDataId(applicationData)
+      applicationAllData.push(applicationFilteredData);
     }
     response.status(200).json(applicationAllData);
   } catch (error) {
@@ -160,13 +164,13 @@ export const addApplicantInfo = async (
     );
     const applicationDataId: string = applicationDataResult.rows[0].id;
 
-    // Update personal info if it exists, otherwise insert
+    // Insert personal info if it exists, otherwise insert
     await client.query(
       `INSERT INTO personal_info (application_data_id, name, location, phone, email, linkedin, github) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
       [applicationDataId, ...Object.values(personal_info)]
     );
 
-    // Update or insert professional experience records
+    // Insert professional experience records
     for (const experience of professional_experience) {
       await client.query(
         `INSERT INTO professional_experience (application_data_id, position, company, location, duration, bullet_points)
@@ -346,3 +350,35 @@ export const deleteApplicantInfo = async (
     client.release();
   }
 };
+
+
+function removeApplicationDataId(data: any) {
+
+  // Remove application_data_id from personal_info
+  delete data.personal_info.application_data_id;
+
+  // Remove application_data_id from each professional_experience item
+  data.professional_experience.forEach((experience: any) => {
+      delete experience.application_data_id;
+  });
+
+  // Remove application_data_id from each education item
+  data.education.forEach((edu: any) => {
+      delete edu.application_data_id;
+  });
+
+  // Remove application_data_id from skills
+  delete data.skills.application_data_id;
+
+  // Remove application_data_id from each project item
+  data.projects.forEach((project: any) => {
+      delete project.application_data_id;
+  });
+
+  // Remove application_data_id from each certification item
+  data.certifications.forEach((certification: any) => {
+      delete certification.application_data_id;
+  });
+
+  return data;
+}

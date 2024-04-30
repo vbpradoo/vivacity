@@ -6,8 +6,8 @@ import * as db from './app.controller';
 
 dotenv.config();
 
-const app = express();
-const port: number = Number(process.env.APP_PORT);
+export const app = express();
+const port: number = Number(process.env.APP_PORT || 3000); // Add default port
 
 app.use(bodyParser.json());
 app.use(
